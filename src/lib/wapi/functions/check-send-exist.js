@@ -40,11 +40,8 @@ export async function getchatId(chatId) {
 }
 
 export async function sendExist(chatId, returnChat = true, Send = true) {
-
-  /* Prevents error: cannot read property includes of undefined 
-     when chatId is undefined */
   if (!chatId) {
-    return scope(undefined, true, 404, 'Invalid chat id');
+    return scope(chatId, true, 500, 'Chat ID is empty');
   }
 
   // Check chat exists (group is always a chat)
